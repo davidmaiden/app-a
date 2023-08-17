@@ -8,7 +8,7 @@ export default function AuthenticationButton() {
 
     const logoutRequest = {
         account: instance.getAllAccounts()[0],
-        postLogoutRedirectUri: "http://localhost:3000"
+        postLogoutRedirectUri: "http://localhost:3000" //"https://zonal-app.graypebble-a2d919ab.uksouth.azurecontainerapps.io"
         // idTokenHint: 
     }
 

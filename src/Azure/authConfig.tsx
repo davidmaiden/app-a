@@ -10,6 +10,11 @@ export const deployment = {
     b2cTenantName: "zonaltest",
     b2cTenantId: "98b3633f-081d-4fa6-840f-ba91822ea382",
     b2cClientId: "0c8521e3-755b-4ce8-92b8-b2b9d19e9262"
+
+    // policyPrefix : "",
+    // b2cTenantName: "zonal",
+    // b2cTenantId: "5df9a0e5-f73a-4e3f-a529-814562a60d10",
+    // b2cClientId: "4cd28786-947f-4121-a771-3932cac0bff4"
 }
 
 /**
@@ -19,14 +24,14 @@ export const deployment = {
  */
 export const b2cPolicies = {
     names: {
-        signIn: `B2C_1A_${deployment.policyPrefix}SIGNIN`,
+        signIn: `B2C_1_${deployment.policyPrefix}SIGNIN`,
         forgotPassword: `b2c_1_${deployment.policyPrefix}passwordreset`,
         editProfile: `b2c_1_${deployment.policyPrefix}profileedit`,
         newTenant: `b2c_1_${deployment.policyPrefix}newTenant`  
     },
     authorities: {
         signIn: {
-            authority: `https://${deployment.b2cTenantName}.b2clogin.com/${deployment.b2cTenantId}/B2C_1A_${deployment.policyPrefix}SIGNIN`
+            authority: `https://${deployment.b2cTenantName}.b2clogin.com/${deployment.b2cTenantId}/B2C_1_${deployment.policyPrefix}SIGNIN`
         },
         forgotPassword: {
             authority: `https://${deployment.b2cTenantName}.b2clogin.com/${deployment.b2cTenantId}/b2c_1_${deployment.policyPrefix}passwordreset`
@@ -51,8 +56,8 @@ export const msalConfig: Configuration = {
         clientId: deployment.b2cClientId, // This is the ONLY mandatory field that you need to supply.
         authority: b2cPolicies.authorities.signIn.authority, // Use a sign-up/sign-in user-flow as a default authority
         knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.
-        redirectUri: "http://localhost:3000", // Points to window.location.origin. You must register this URI on Azure Portal/App Registration.
-        postLogoutRedirectUri: "http://localhost:3000", // Indicates the page to navigate after logout.
+        redirectUri: "http://localhost:3000", // "https://zonal-app.graypebble-a2d919ab.uksouth.azurecontainerapps.io", // Points to window.location.origin. You must register this URI on Azure Portal/App Registration.
+        postLogoutRedirectUri: "http://localhost:3000", //"https://zonal-app.graypebble-a2d919ab.uksouth.azurecontainerapps.io", // Indicates the page to navigate after logout.
         navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
     },
     cache: {
@@ -90,17 +95,17 @@ export const msalConfig: Configuration = {
  */
  export const protectedResources = {
     api: {
-        endpoint: "https://localhost:7174/weatherforecast",
+        endpoint: "https://localhost:7045/v1/greeting/5",
         scopes: [
-            //"https://zonaltest.onmicrosoft.com/438a835a-de6b-4424-b832-dd0f21bb2ead/.default"
+            "https://zonaltest.onmicrosoft.com/438a835a-de6b-4424-b832-dd0f21bb2ead/write_access",
             "https://zonaltest.onmicrosoft.com/438a835a-de6b-4424-b832-dd0f21bb2ead/read_access"
-        ], // e.g. api://xxxxxx/access_as_user "https://zonaltest.onmicrosoft.com/newapi/access_as_user"
+        ],
     },
     tenantapi: {
         endpoint: "https://localhost:7174/api/tenant/",
         scopes: [
             //"https://zonaltest.onmicrosoft.com/438a835a-de6b-4424-b832-dd0f21bb2ead/.default"
-            "https://zonaltest.onmicrosoft.com/438a835a-de6b-4424-b832-dd0f21bb2ead/read_access"
+            "https://zonaltest.onmicrosoft.com/438a835a-de6b-4424-b832-dd0f21bb2ead/.default"
         ], // e.g. api://xxxxxx/access_as_user "https://zonaltest.onmicrosoft.com/newapi/access_as_user"
     }
 }

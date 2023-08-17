@@ -21,13 +21,18 @@ export async function CallApi() {
     headers.append("Authorization", bearer);
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "application/json");
+    headers.append("x-tenantid", "1be4ef1c-921c-4075-a10f-9b74cb292e81");
+ 
+    console.log(headers);
 
     const options = {
         method: "GET",
         headers: headers
     };
 
-    return fetch(protectedResources.api.endpoint, options)
-        .then(response => response.json())
+    console.log(`Using id : ${account.localAccountId}`);
+    
+    return fetch(protectedResources.api.endpoint + account.localAccountId + "/profile", options)
+        .then(response => console.log(response.json()))
         .catch(err => console.log(err));
 }
