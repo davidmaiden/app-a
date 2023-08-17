@@ -1,20 +1,12 @@
-import { Button } from "@material-ui/core";
-import { CloseOutlined } from "@material-ui/icons";
-import { CallApi } from "../Services/ExternalApi";
-import { CallTenantApi } from "../Services/TenantApi";
-import CurrentTenant from "./CurrentTenant";
-import TenantAccess from "./TenantAccess";
+import { useMsal } from "@azure/msal-react";
+import { Typography } from "@material-ui/core";
 
 export default function AuthorizedContent() {
+    const msal = useMsal();
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>        
-            <CurrentTenant />
-            <TenantAccess />
-            <br />
-            <Button color="inherit" onClick={async () => { await CallApi(); }}>Get the stuff</Button>
-            <Button color="inherit" onClick={async () => { await CallTenantApi('HF1V76DG').then((r) => console.log(r)); }}>Call Tenant</Button>
-        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <Typography variant="h4" className="card-title">You are all logged in now!</Typography>
+        </div> 
     );
-
 }
