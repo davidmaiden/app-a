@@ -56,8 +56,8 @@ export const msalConfig: Configuration = {
         clientId: deployment.b2cClientId, // This is the ONLY mandatory field that you need to supply.
         authority: b2cPolicies.authorities.signIn.authority, // Use a sign-up/sign-in user-flow as a default authority
         knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.
-        redirectUri: "http://localhost:3000", // "https://zonal-app.graypebble-a2d919ab.uksouth.azurecontainerapps.io", // Points to window.location.origin. You must register this URI on Azure Portal/App Registration.
-        postLogoutRedirectUri: "http://localhost:3000", //"https://zonal-app.graypebble-a2d919ab.uksouth.azurecontainerapps.io", // Indicates the page to navigate after logout.
+        redirectUri: "https://lively-hill-0c12df703.3.azurestaticapps.net/", // "https://zonal-app.graypebble-a2d919ab.uksouth.azurecontainerapps.io", // Points to window.location.origin. You must register this URI on Azure Portal/App Registration.
+        postLogoutRedirectUri: "https://lively-hill-0c12df703.3.azurestaticapps.net/", //"https://zonal-app.graypebble-a2d919ab.uksouth.azurecontainerapps.io", // Indicates the page to navigate after logout.
         navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
     },
     cache: {
