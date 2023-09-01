@@ -1,5 +1,5 @@
 import { IPublicClientApplication } from "@azure/msal-browser";
-import { AuthenticatedTemplate, IMsalContext, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { Button } from "@material-ui/core";
 import { loginRequest } from "../Azure/authConfig";
 
